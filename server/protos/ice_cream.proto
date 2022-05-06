@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+service IceCream {
+    rpc OrderIceCream(IceCreamRequest) returns (IceCreamResponse);
+}
+
+message IceCreamRequest {
+    // protobuffer: client -> server
+    int32 scoops = 1;
+    string flavor = 2;
+}
+
+message IceCreamResponse {
+    // protobuffer: server -> client
+    string message = 1;
+}

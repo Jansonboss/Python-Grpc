@@ -2,10 +2,10 @@
 """Client and server classes corresponding to protobuf-defined services."""
 import grpc
 
-import square_root_pb2 as square__root__pb2
+import ice_cream_pb2 as ice__cream__pb2
 
 
-class SquareRootServiceStub(object):
+class IceCreamStub(object):
     """Missing associated documentation comment in .proto file."""
 
     def __init__(self, channel):
@@ -14,42 +14,42 @@ class SquareRootServiceStub(object):
         Args:
             channel: A grpc.Channel.
         """
-        self.squareRoot = channel.unary_unary(
-                '/SquareRootService/squareRoot',
-                request_serializer=square__root__pb2.Number.SerializeToString,
-                response_deserializer=square__root__pb2.Result.FromString,
+        self.OrderIceCream = channel.unary_unary(
+                '/IceCream/OrderIceCream',
+                request_serializer=ice__cream__pb2.IceCreamRequest.SerializeToString,
+                response_deserializer=ice__cream__pb2.IceCreamResponse.FromString,
                 )
 
 
-class SquareRootServiceServicer(object):
+class IceCreamServicer(object):
     """Missing associated documentation comment in .proto file."""
 
-    def squareRoot(self, request, context):
+    def OrderIceCream(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
 
-def add_SquareRootServiceServicer_to_server(servicer, server):
+def add_IceCreamServicer_to_server(servicer, server):
     rpc_method_handlers = {
-            'squareRoot': grpc.unary_unary_rpc_method_handler(
-                    servicer.squareRoot,
-                    request_deserializer=square__root__pb2.Number.FromString,
-                    response_serializer=square__root__pb2.Result.SerializeToString,
+            'OrderIceCream': grpc.unary_unary_rpc_method_handler(
+                    servicer.OrderIceCream,
+                    request_deserializer=ice__cream__pb2.IceCreamRequest.FromString,
+                    response_serializer=ice__cream__pb2.IceCreamResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
-            'SquareRootService', rpc_method_handlers)
+            'IceCream', rpc_method_handlers)
     server.add_generic_rpc_handlers((generic_handler,))
 
 
  # This class is part of an EXPERIMENTAL API.
-class SquareRootService(object):
+class IceCream(object):
     """Missing associated documentation comment in .proto file."""
 
     @staticmethod
-    def squareRoot(request,
+    def OrderIceCream(request,
             target,
             options=(),
             channel_credentials=None,
@@ -59,8 +59,8 @@ class SquareRootService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/SquareRootService/squareRoot',
-            square__root__pb2.Number.SerializeToString,
-            square__root__pb2.Result.FromString,
+        return grpc.experimental.unary_unary(request, target, '/IceCream/OrderIceCream',
+            ice__cream__pb2.IceCreamRequest.SerializeToString,
+            ice__cream__pb2.IceCreamResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
